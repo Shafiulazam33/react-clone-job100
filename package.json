@@ -1,0 +1,41 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "bootstrap-less": "^3.3.8",
+    "concurrently": "^8.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.6.1",
+    "morgan": "^1.10.0",
+    "node-mailjet": "^6.0.4",
+    "nodemailer": "^6.9.6",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "react-js-pagination": "^3.0.3",
+    "stripe": "^13.9.0",
+    "validator": "^13.11.0"
+  },
+  "name": "react-clone-job10",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shafiulazam33/react-clone-job100.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Shafiulazam33/react-clone-job100/issues"
+  },
+  "homepage": "https://github.com/Shafiulazam33/react-clone-job100#readme",
+  "keywords": [],
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
