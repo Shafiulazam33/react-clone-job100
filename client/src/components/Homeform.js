@@ -82,7 +82,9 @@ export default function Homeform() {
       })
       .catch((error) => {
         console.log(error);
-        Axios.post(`/api/job/jobs`, { "featured.isfeatured": 1 })
+        Axios.post(`https://ruby-better-xerus.cyclic.app/api/job/jobs`, {
+          "featured.isfeatured": 1,
+        })
           .then((res) => {
             setData(res.data.jobs);
           })
@@ -97,7 +99,9 @@ export default function Homeform() {
       console.log("s", state.searchword);
       clearTimeout(timeout);
       timeout = setTimeout(function () {
-        Axios.post("/api/job/jobs", { searchword: state.searchword })
+        Axios.post("https://ruby-better-xerus.cyclic.app/api/job/jobs", {
+          searchword: state.searchword,
+        })
           .then((res) => {
             console.log(res);
             if (res.data.jobs.length != 0) {
