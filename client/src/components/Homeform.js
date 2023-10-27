@@ -69,7 +69,9 @@ export default function Homeform() {
               console.log(error);
             });*/
         } else {
-          Axios.post("/api/job/jobs", { "featured.isfeatured": 1 })
+          Axios.post("https://ruby-better-xerus.cyclic.app/api/job/jobs", {
+            "featured.isfeatured": 1,
+          })
             .then((res) => {
               setData(res.data.jobs);
             })
