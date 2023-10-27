@@ -69,7 +69,7 @@ export default function Homeform() {
               console.log(error);
             });*/
         } else {
-          Axios.post("https://ruby-better-xerus.cyclic.app/api/job/jobs", {
+          Axios.post("https://react-clone-job100.vercel.app/api/job/jobs", {
             "featured.isfeatured": 1,
           })
             .then((res) => {
@@ -82,7 +82,7 @@ export default function Homeform() {
       })
       .catch((error) => {
         console.log(error);
-        Axios.post(`https://ruby-better-xerus.cyclic.app/api/job/jobs`, {
+        Axios.post(`https://react-clone-job100.vercel.app/api/job/jobs`, {
           "featured.isfeatured": 1,
         })
           .then((res) => {
@@ -99,7 +99,7 @@ export default function Homeform() {
       console.log("s", state.searchword);
       clearTimeout(timeout);
       timeout = setTimeout(function () {
-        Axios.post("https://ruby-better-xerus.cyclic.app/api/job/jobs", {
+        Axios.post("https://react-clone-job100.vercel.app/api/job/jobs", {
           searchword: state.searchword,
         })
           .then((res) => {
