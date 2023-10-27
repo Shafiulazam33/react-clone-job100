@@ -17,10 +17,10 @@ async function doemail(email, token, resetLink) {
   });
   let link, subText;
   if (resetLink) {
-    link = `https://purple-trout-robe.cyclic.app/password-reset?token=${token}&email=${email}`;
+    link = `https://localhost:4000/password-reset?token=${token}&email=${email}`;
     subText = "Password-Reset On React-Jobs-Clone";
   } else {
-    link = `https://purple-trout-robe.cyclic.app/email-verification?token=${token}`;
+    link = `https://localhost:4000/email-verification?token=${token}`;
     subText = "Email Verification For React-Jobs-Clone";
   }
   console.log(email);

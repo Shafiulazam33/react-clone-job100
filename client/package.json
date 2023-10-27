@@ -1,6 +1,6 @@
 {
   "name": "react-clone-job10",
-  "proxy": "https://purple-trout-robe.cyclic.app",
+  "proxy": "https://localhost:4000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
