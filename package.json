@@ -18,10 +18,10 @@
     "stripe": "^13.9.0",
     "validator": "^13.11.0"
   },
-  "name": "react-clone-job10",
+  "name": "react-clone-job100",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
