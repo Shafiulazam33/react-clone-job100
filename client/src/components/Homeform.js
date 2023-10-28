@@ -31,7 +31,10 @@ export default function Homeform() {
     quicklocation: "",
   });
   useEffect(() => {
-    Axios.get("https://ipapi.co/json/" || ipApis[Math.floor(Math.random() * 2)])
+    Axios.get(
+      "https://cors-anywhere.herokuapp.com/https://ipapi.co/json/" ||
+        ipApis[Math.floor(Math.random() * 2)]
+    )
       .then((res) => {
         console.log(res);
         let quicklocation;
