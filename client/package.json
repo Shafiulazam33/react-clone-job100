@@ -1,6 +1,5 @@
 {
   "name": "react-clone-job10",
-  "proxy": "https://react-clone-job100.vercel.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
