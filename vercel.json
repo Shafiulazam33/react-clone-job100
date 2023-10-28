@@ -8,8 +8,8 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
-      "dest": "/index.js",
+      "source": "/api/(.*)",
+
       "Methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       "Access-Control-Allow-Origin": "*"
     }
