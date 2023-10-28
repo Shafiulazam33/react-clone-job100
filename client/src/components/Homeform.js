@@ -31,14 +31,11 @@ export default function Homeform() {
     quicklocation: "",
   });
   useEffect(() => {
-    Axios.get(
-      "https://cors-anywhere.herokuapp.com/https://ipapi.co/json/" ||
-        ipApis[Math.floor(Math.random() * 2)]
-    )
+    Axios.get("api/location" || ipApis[Math.floor(Math.random() * 2)])
       .then((res) => {
         console.log(res);
         let quicklocation;
-        if (res.data.country) {
+        if (res.data.country_name) {
           quicklocation = res.data.city + "," + res.data.country_name;
           setState({ ...state, searchword: quicklocation });
           /*Axios.post("/api/job/jobs", { searchword: state.searchword })

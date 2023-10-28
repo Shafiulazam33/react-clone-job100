@@ -37,6 +37,18 @@ app.get("/", (req, res) => {
         Application`,
   });
 });
+app.get("/api/location", (req, res) => {
+  fetch("https://ipapi.co/json/")
+    .then(function (response) {
+      response.json().then((data) => {
+        console.log(data);
+        res.json(data);
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`SERVER is RUNNING ON PORT ${PORT}`);
