@@ -16,6 +16,10 @@ console.log("....kuate");
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }*/
+app.use(express.static("client/build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 const mongodburi =
   process.env.MONGODB_URI ||
   "mongodb+srv://oltofbmcelriqlkhue:8meAS5s3URshv3ru@cluster.phcozaq.mongodb.net/?retryWrites=true&w=majority";
