@@ -31,14 +31,12 @@ export default function Homeform() {
     quicklocation: "",
   });
   useEffect(() => {
-    Axios.get(
-      "http://ip-api.com/json/" || ipApis[Math.floor(Math.random() * 2)]
-    )
+    Axios.get("https://ipapi.co/json/" || ipApis[Math.floor(Math.random() * 2)])
       .then((res) => {
         console.log(res);
         let quicklocation;
         if (res.data.country) {
-          quicklocation = res.data.city + "," + res.data.country;
+          quicklocation = res.data.city + "," + res.data.country_name;
           setState({ ...state, searchword: quicklocation });
           /*Axios.post("/api/job/jobs", { searchword: state.searchword })
             .then((res) => {
