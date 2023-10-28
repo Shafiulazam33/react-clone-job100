@@ -31,7 +31,11 @@ export default function Homeform() {
     quicklocation: "",
   });
   useEffect(() => {
-    Axios.get("api/location" || ipApis[Math.floor(Math.random() * 2)])
+    Axios.get(
+      "https://api.ipgeolocation.io/ipgeo?apiKey=09a70338fdd147739daddf2382c0e6fd" ||
+        "/api/location" ||
+        ipApis[Math.floor(Math.random() * 2)]
+    )
       .then((res) => {
         console.log(res);
         let quicklocation;
