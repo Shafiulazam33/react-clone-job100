@@ -17,10 +17,10 @@ async function doemail(email, token, resetLink) {
   });
   let link, subText;
   if (resetLink) {
-    link = `https://localhost:4000/api/profile/password-reset?token=${token}&email=${email}`;
+    link = `https://react-jobs-site.cyclic.app/api/profile/password-reset?token=${token}&email=${email}`;
     subText = "Password-Reset On React-Jobs-Clone";
   } else {
-    link = `https://localhost:4000/api/profile/email-verification?token=${token}`;
+    link = `https://react-jobs-site.cyclic.app/api/profile/email-verification?token=${token}`;
     subText = "Email Verification For React-Jobs-Clone";
   }
 
