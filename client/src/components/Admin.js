@@ -13,7 +13,6 @@ const Admin = () => {
   const funcFindFeaturedPost = () => {
     Axios.post("/api/job/find-featured-post")
       .then((res) => {
-        console.log(res.data)
         setData(res.data.jobs);
         setDataLength(res.data.jobs.length);
       })

@@ -3,10 +3,8 @@ import Axios from "axios";
 import jwtDecode from "jwt-decode";
 import StripeCheckout from "react-stripe-checkout";
 import { Button, Label } from "semantic-ui-react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./Featured.css";
-//if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
-console.log(process.env.REACT_APP_STRIPE_KEY);
 let token = localStorage.getItem("auth_token");
 let decode;
 if (token) {
@@ -14,13 +12,9 @@ if (token) {
 }
 var Featured = () => {
   let { job_id } = useParams();
-  let history = useHistory();
   const onToken = (token) => {
-    console.log(token);
     Axios.put("/api/job/payfor-feature", { ...token, job_id })
-      .then((res) => {
-       
-      })
+      .then((res) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -49,7 +43,7 @@ var Featured = () => {
           panelLabel="Ready To Pay"
           amount={100 * 100}
           currency="USD"
-          stripeKey="pk_test_51O3u0GEmzK5r5ma0CmueVUplGtu5HOofBMpP93IxVFroc3fSEieETvlJ5Etbw7WsGGw5X63HDxUGaKT9smlUCgrw00ZaIoHCW3"
+          stripeKey={process.env.REACT_APP_STRIPE_CLIENT_KEY}
         >
           <Button as="div" labelPosition="right">
             <Button color="blue">Promote</Button>

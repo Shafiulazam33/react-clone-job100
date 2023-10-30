@@ -10,7 +10,6 @@
     "@tinymce/tinymce-react": "^4.3.0",
     "@ubilabs/react-geosuggest": "^2.16.1",
     "axios": "^1.5.1",
-    "dotenv": "^16.3.1",
     "jwt-decode": "^3.1.2",
     "normalize.css": "^8.0.1",
     "path-browserify": "^1.0.1",
@@ -22,6 +21,7 @@
     "react-stripe-checkout": "^2.6.3",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
+    "uniqid": "^5.4.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

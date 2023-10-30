@@ -15,7 +15,6 @@ import {
 
 export default function Postjobs() {
   let change, takeSuggest;
-  const geosuggestEl = useRef(null);
   const { _id } = useParams();
   const [error, setError] = useState({
     company: "",

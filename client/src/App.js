@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "./components/Header";
 import Homeform from "./components/Homeform";
-import Vuahome from "./components/Vuahome";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Admin from "./components/Admin";
@@ -18,14 +17,9 @@ import Privacypolicy from "./components/Privacypolicy";
 import Reset from "./components/Reset";
 import Adv from "./components/Adv";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ReactGA from "react-ga";
+
 import "./App.css";
 var App = () => {
-  /*  useEffect(() => {
-    ReactGA.initialize('UA-167933617-1');
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  });
-*/
   return (
     <div className="Apps">
       <BrowserRouter>

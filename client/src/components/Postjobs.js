@@ -104,7 +104,6 @@ export default function Postjobs() {
   };
 
   const handleLocationChange = (event) => {
-    console.log("location", event.target.value);
     setState({ ...state, location: event.target.value });
   };
   const handleEditorChange1 = (short_description, editor) => {

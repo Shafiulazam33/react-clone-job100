@@ -1,11 +1,7 @@
 const Profile = require("../model/profile");
 const Company = require("../model/company");
 const Jobpost = require("../model/jobpost");
-console.log(" ..........................", process.env.SECRET_KEY);
-const stripe = require("stripe")(
-  "sk_test_51O3u0GEmzK5r5ma0JklDbXf9cBR0WouSAhxKa6BhaHGCQW1DzXXcNX4G5nKT0963lNGYUmXq8Nr6imUhbTmCHe7g00htulLv1b" ||
-    process.env.SECRET_KEY
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const jobPostValidator = require("../validator/jobPostvalidator");
 const jobPostCompanyValidator = require("../validator/jobPostCompanyvalidator");
 const { serverError, resourceError } = require("../utils/error");
@@ -49,9 +45,10 @@ module.exports = {
   },
   findJobs(req, res) {
     let { searchword } = req.body;
-    findfunc = () => {
+    let findfunc = () => {
       return req.body;
     };
+
     if (searchword) {
       Jobpost.find({ location: { $regex: searchword, $options: "i" } })
         .sort({ "featured.isfeatured": -1, createdAt: -1 })
@@ -84,7 +81,6 @@ module.exports = {
   },
   findCompanyToEdit(req, res) {
     let { email } = req.user;
-    console.log(email);
     let { _id } = req.body;
     Profile.findOne({ email }, "companies")
       .exec()
@@ -95,7 +91,7 @@ module.exports = {
         let comp_id = prof.companies.find((value) => {
           return value._id == _id;
         });
-        console.log(comp_id);
+
         if (!comp_id) {
           resourceError(res, error);
         }
@@ -115,7 +111,7 @@ module.exports = {
   },
   findJobToEdit(req, res) {
     let { email } = req.user;
-    console.log(email);
+
     let { _id } = req.body;
     Profile.find({ email }, "companies")
       .exec()
@@ -140,7 +136,6 @@ module.exports = {
                 if (!result) {
                   resourceError(res, error);
                 }
-                console.log(result);
                 let job = result.find((value) => {
                   return value._id == _id;
                 });
@@ -166,7 +161,7 @@ module.exports = {
         if (!jobs) {
           resourceError(res, error);
         }
-        // console.log(jobs[0].companies)
+
         let ab = jobs[0].companies;
         Company.find({
           _id: { $in: ab },
@@ -210,21 +205,7 @@ module.exports = {
       tags,
       description,
     } = req.body;
-    console.log(
-      company_name,
-      website,
-      logo_url,
-      short_description,
-      job_title,
-      location,
-      remote,
-      job_type,
-      salary,
-      experience,
-      apply_link,
-      tags,
-      description
-    );
+
     let validate = jobPostCompanyValidator({
       company_name,
       website,
@@ -240,7 +221,7 @@ module.exports = {
       tags,
       description,
     });
-    console.log(validate);
+
     if (!validate.isValid) {
       return res.status(400).json(validate.error);
     }
@@ -361,7 +342,6 @@ module.exports = {
       .catch((error) => serverError(res, error));
   },
   payforfeature(req, res) {
-    console.log("bodyinserver", req.body);
     stripe.charges
       .create({
         amount: 100 * 100,
@@ -391,7 +371,7 @@ module.exports = {
         let currentdate = new Date();
         let nextdate = Number(currentdate.getTime()) + 30 * 24 * 3600 * 1000;
         nextdate = new Date(nextdate);
-        console.log(funcDate(nextdate));
+
         Jobpost.findOneAndUpdate(
           { _id: req.body.job_id },
           {
@@ -407,7 +387,6 @@ module.exports = {
         )
           .exec()
           .then((result) => {
-            console.log("sever2", result);
             res.status(200).json({
               result,
             });
@@ -456,7 +435,6 @@ module.exports = {
     )
       .exec()
       .then((result) => {
-        console.log(result);
         res.status(200).json({
           result,
         });

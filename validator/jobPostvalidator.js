@@ -2,7 +2,7 @@ const validator = require("validator");
 
 const validate = (user) => {
   let error = {};
-  console.log("aas", user.location);
+
   if (!user.company_id) {
     error.company_id = "Please Select A Company";
   }

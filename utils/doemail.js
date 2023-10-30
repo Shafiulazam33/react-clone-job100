@@ -9,23 +9,23 @@ async function doemail(email, token, resetLink) {
     secure: false,
     tls: false,
     auth: {
-      user: "mdshafiulazam33@yahoo.com",
-      pass: "nbwnvhnrxrhqdmuz",
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS,
     },
     debug: false,
     logger: true,
   });
   let link, subText;
   if (resetLink) {
-    link = `https://localhost:4000/password-reset?token=${token}&email=${email}`;
+    link = `https://localhost:4000/api/profile/password-reset?token=${token}&email=${email}`;
     subText = "Password-Reset On React-Jobs-Clone";
   } else {
-    link = `https://localhost:4000/email-verification?token=${token}`;
+    link = `https://localhost:4000/api/profile/email-verification?token=${token}`;
     subText = "Email Verification For React-Jobs-Clone";
   }
-  console.log(email);
+
   let info = await transporter.sendMail({
-    from: "<mdshafiulazam33@yahoo.com>", // sender address
+    from: `<${process.env.EMAIL}>`, // sender address
     to: email, // list of receivers
     subject: subText, // Subject line
     html: `<a href="${link}">${link}</a>`, // html body

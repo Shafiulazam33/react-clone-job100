@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 let Adv = ({ location }) => {
   const { myParam } = location.state;
-  console.log("myparam", myParam);
   return (
     <div class="advertise-wrapper">
       <div className="icon-briefcase">

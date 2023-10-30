@@ -137,7 +137,6 @@ module.exports = {
   },
 
   emailVerification(req, res) {
-    console.log("ass", req.user.email);
     Profile.findOneAndUpdate(
       { email: req.user.email },
       { emailConfirmed: true },
@@ -323,7 +322,6 @@ module.exports = {
       )
         .exec()
         .then((result) => {
-          console.log("s");
           res.status(200).json({
             result,
           });

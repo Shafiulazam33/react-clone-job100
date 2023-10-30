@@ -2,7 +2,6 @@ const validator = require("validator");
 
 const validate = (user) => {
   let error = {};
-  console.log("locationin_validator", user.location);
   if (!user.company_name) {
     error.company_name = "Please Provide Company Name";
   }

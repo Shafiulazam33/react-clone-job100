@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Homeform.css";
 import Axios from "axios";
+import uniqid from "uniqid";
 import { Icon, Label, Checkbox, Message } from "semantic-ui-react";
 
 const quicklocations = [
@@ -13,67 +14,30 @@ const quicklocations = [
   "Singapore",
 ];
 let timeout;
-const ipApis = [
-  "https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey=at_4sNpj0U2toNHNXaMJfvClmSafV5vB",
-  "https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey=at_7TASe6hC7vZETVoLcZVOESgoWJJE0",
-];
 export default function Homeform() {
-  const geosuggestEl = useRef(null);
   let { name } = useParams();
   const [stateMessage, setMessage] = useState(null);
   const [statedata, setData] = useState([]);
   const [stateError, setError] = useState({
-    error: false, //vdH8KbhvFUP9hWf
+    error: false,
   });
   const [state, setState] = useState({
     searchword: "",
     remote: false,
     quicklocation: "",
   });
+
   useEffect(() => {
     Axios.get(
-      "https://api.ipgeolocation.io/ipgeo?apiKey=09a70338fdd147739daddf2382c0e6fd" ||
-        "/api/location" ||
-        ipApis[Math.floor(Math.random() * 2)]
+      `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPKEY}`
     )
       .then((res) => {
-        console.log(res);
         let quicklocation;
         if (res.data.country_name) {
           quicklocation = res.data.city + "," + res.data.country_name;
           setState({ ...state, searchword: quicklocation });
-          /*Axios.post("/api/job/jobs", { searchword: state.searchword })
-            .then((res) => {
-              console.log(res);
-              if (res.data.jobs.length != 0) {
-                setData(res.data.jobs);
-              } else {
-                setMessage(
-                  <Message info>
-                    <Message.Header>Sorry</Message.Header>
-                    <p>
-                      No Jobs Found In Your Location But You Can Look At Jobs In
-                      Other Locations
-                    </p>
-                  </Message>
-                );
-                Axios.post(`/api/job/jobs`, { "featured.isfeatured": 1 })
-                  .then((res) => {
-                    setData(res.data.jobs);
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-                setError({ error: true });
-              }
-            })
-            .catch((error) => {
-              console.log(error);
-            });*/
         } else {
-          Axios.post("/api/job/jobs", {
-            "featured.isfeatured": 1,
-          })
+          Axios.post("/api/job/jobs")
             .then((res) => {
               setData(res.data.jobs);
             })
@@ -84,30 +48,19 @@ export default function Homeform() {
       })
       .catch((error) => {
         console.log(error);
-        Axios.post("/api/job/jobs", {
-          "featured.isfeatured": 1,
-        })
-          .then((res) => {
-            setData(res.data.jobs);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        setError({ error: true });
       });
   }, []);
   useEffect(() => {
     if (state.searchword) {
-      console.log("s", state.searchword);
       clearTimeout(timeout);
       timeout = setTimeout(function () {
         Axios.post("/api/job/jobs", {
           searchword: state.searchword,
         })
           .then((res) => {
-            console.log(res);
             if (res.data.jobs.length != 0) {
               setData(res.data.jobs);
+              setMessage();
             } else {
               setMessage(
                 <Message warning>
@@ -118,7 +71,7 @@ export default function Homeform() {
                   </p>
                 </Message>
               );
-              Axios.post(`/api/job/jobs`, { "featured.isfeatured": 1 })
+              Axios.post(`/api/job/jobs`)
                 .then((res) => {
                   setData(res.data.jobs);
                 })
@@ -135,7 +88,6 @@ export default function Homeform() {
     }
   }, [state.searchword]);
   const onSuggestSelect = (e) => {
-    console.log(e.target.value);
     setState({ ...state, searchword: e.target.value });
   };
   const funcCheckbox = (ind, val) => {
@@ -205,7 +157,7 @@ export default function Homeform() {
               {quicklocations.map((item, index) => {
                 return (
                   <>
-                    <li key={index}>
+                    <li key={uniqid()}>
                       <Link onClick={() => QuickLocationSearch(item)} to="">
                         {item}
                       </Link>
@@ -280,7 +232,7 @@ export default function Homeform() {
                           <ul className="ul job-tags">
                             {value.tags.map((val, index) => {
                               return (
-                                <li key={index}>
+                                <li key={uniqid()}>
                                   <Label>{val}</Label>
                                 </li>
                               );
